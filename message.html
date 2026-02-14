@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ucapan — Anna Azzahra</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body class="theme">
+  <canvas id="fx" class="fx" aria-hidden="true"></canvas>
+
+  <header class="hud">
+    <a class="brand link" href="./index.html">
+      <span class="dot"></span>
+      <span>back://home</span>
+    </a>
+
+    <div class="hud-right">
+      <button class="btn btn-ghost" id="musicBtn" type="button">
+        <span class="icon">♪</span>
+        <span id="musicLabel">Play music</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="sheet">
+    <div class="sheet-head">
+      <div class="sheet-title">message.txt</div>
+      <div class="sheet-sub">copy enabled</div>
+    </div>
+
+    <pre class="msg" id="copyArea">SELAMAT ULANG TAHUN ANNA AZZAHRA
+SEMOGA PANJANG UMUR  SEMOGA SELALU SEHAT, BAHAGIA DUNIA AKHIRAT, SEMOGA SUKSES YAA
+
+ENJOY YOUR LIFE
+
+14 - Feb - 2010
+
+
+by  © diksszyz13</pre>
+
+    <div class="sheet-actions">
+      <button class="btn btn-primary" id="copyBtn" type="button">Copy ucapan</button>
+      <a class="btn btn-soft" href="./index.html">Lihat animasi</a>
+    </div>
+
+    <p class="mini" id="musicHint">Musik akan lanjut kalau sudah kamu play sekali.</p>
+  </main>
+
+  <audio id="bgMusic" preload="auto" loop playsinline>
+    <source src="https://files.catbox.moe/jubyqs.mp4">
+  </audio>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>

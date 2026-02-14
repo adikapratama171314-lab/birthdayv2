@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday — Anna Azzahra</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body class="theme">
+  <canvas id="fx" class="fx" aria-hidden="true"></canvas>
+
+  <header class="hud">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>birthday://anna</span>
+    </div>
+
+    <div class="hud-right">
+      <button class="btn btn-ghost" id="musicBtn" type="button">
+        <span class="icon">♪</span>
+        <span id="musicLabel">Play music</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="center">
+    <div class="tag">POV: diksszyz13 made a birthday page</div>
+
+    <h1 class="title">
+      <span class="small">Happy Birthday</span>
+      <span class="big">Anna Azzahra</span>
+    </h1>
+
+    <div class="line" aria-hidden="true"></div>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="./message.html">Buka ucapan →</a>
+      <button class="btn btn-soft" id="boostBtn" type="button">Boost efek ✨</button>
+    </div>
+
+    <p class="hint" id="musicHint">Klik <b>Play music</b> untuk mulai.</p>
+  </main>
+
+  <audio id="bgMusic" preload="auto" loop playsinline>
+    <source src="https://files.catbox.moe/jubyqs.mp4">
+  </audio>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>
