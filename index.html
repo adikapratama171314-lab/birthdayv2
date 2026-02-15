@@ -1,56 +1,169 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Happy Birthday — Anna Azzahra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Magic for Anna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark: #0b132b;
+            --blue-neon: #00b4d8;
+            --soft-blue: #90e0ef;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+        body, html {
+            margin: 0; padding: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: var(--dark);
+            color: white; height: 100vh; overflow: hidden;
+        }
 
-  <link rel="stylesheet" href="./assets/style.css" />
+        #bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at center, #04358b 0%, #0b132b 100%);
+        }
+
+        .page {
+            display: none; height: 100vh; width: 100%;
+            flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 20px;
+            box-sizing: border-box; animation: zoomIn 0.8s ease;
+        }
+
+        .active { display: flex; }
+
+        /* --- PHOTO STYLE --- */
+        .img-circle {
+            width: 140px; height: 140px; border-radius: 50%;
+            border: 3px solid var(--blue-neon); object-fit: cover;
+            box-shadow: 0 0 20px var(--blue-neon); animation: floating 3s infinite ease-in-out;
+        }
+
+        .pop-photo {
+            position: absolute; width: 90px; height: 90px;
+            border-radius: 12px; border: 2px solid white;
+            object-fit: cover; display: none; animation: popUp 0.5s forwards;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .neon-frame {
+            width: 220px; height: 280px; border-radius: 15px;
+            border: 2px solid var(--blue-neon); overflow: hidden;
+            box-shadow: 0 0 15px var(--blue-neon);
+        }
+        .neon-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+        .btn {
+            margin-top: 25px; padding: 12px 25px;
+            background: transparent; border: 2px solid var(--blue-neon);
+            color: white; border-radius: 25px; cursor: pointer;
+            font-weight: bold; transition: 0.3s;
+        }
+        .btn:hover { background: var(--blue-neon); box-shadow: 0 0 20px var(--blue-neon); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes popUp { from { transform: scale(0) rotate(-20deg); opacity: 0; } to { transform: scale(1) rotate(0deg); opacity: 1; } }
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0.5; animation: twinkle 2s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    </style>
 </head>
+<body>
 
-<body class="theme">
-  <canvas id="fx" class="fx" aria-hidden="true"></canvas>
+    <div id="bg"></div>
 
-  <header class="hud">
-    <div class="brand">
-      <span class="dot"></span>
-      <span>birthday://anna</span>
+    <div id="page1" class="page active">
+        <div class="profile-container" onclick="goToPage(2)" style="position: relative; cursor: pointer;">
+            <img src="https://img.sanishtech.com/u/b217baa7321e8d43b36f85ab595e621b.jpg" class="img-circle">
+            <div style="position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); background: var(--blue-neon); padding: 2px 10px; border-radius: 10px; font-size: 10px;">BUKA 💌</div>
+        </div>
+        <h1 style="font-family: 'Dancing Script'; margin-top: 30px;">HBD</h1>
+        <p style="opacity: 0.6; font-size: 14px;">Ketuk fotonya ya naa</p>
     </div>
 
-    <div class="hud-right">
-      <button class="btn btn-ghost" id="musicBtn" type="button">
-        <span class="icon">♪</span>
-        <span id="musicLabel">Play music</span>
-      </button>
-    </div>
-  </header>
-
-  <main class="center">
-    <div class="tag">POV: diksszyz13 made a birthday page</div>
-
-    <h1 class="title">
-      <span class="small">Happy Birthday</span>
-      <span class="big">Anna Azzahra</span>
-    </h1>
-
-    <div class="line" aria-hidden="true"></div>
-
-    <div class="actions">
-      <a class="btn btn-primary" href="./message.html">Buka ucapan →</a>
-      <button class="btn btn-soft" id="boostBtn" type="button">Boost efek ✨</button>
+    <div id="page2" class="page">
+        <h2>SENTUH EMOJI EMOJI NYA YAA!</h2>
+        <div style="position: relative; width: 300px; height: 300px;">
+            <span onclick="showPop(1)" style="position: absolute; top: 30%; left: 15%; cursor: pointer; font-size: 60px;">🌹</span>
+            <span onclick="showPop(2)" style="position: absolute; top: 50%; right: 10%; cursor: pointer; font-size: 50px;">✨</span>
+            <span onclick="showPop(3)" style="position: absolute; bottom: 25%; left: 35%; cursor: pointer; font-size: 45px;">🌸</span>
+            
+            <img id="pop1" src="https://img.sanishtech.com/u/500b235bb8c9dbde0ebeab58171076f6.jpg" class="pop-photo" style="top: 0; left: 0;">
+            <img id="pop2" src="https://img.sanishtech.com/u/0e0759c75cce349b117c3fe259eb0734.jpg" class="pop-photo" style="top: 60%; right: 0;">
+            <img id="pop3" src="https://img.sanishtech.com/u/83ad7f15ee9c651f75ff2a0e3909c643.jpg" class="pop-photo" style="bottom: 0; left: 30%;">
+        </div>
+        <button class="btn" onclick="goToPage(3)">Kalau udah klik ini</button>
     </div>
 
-    <p class="hint" id="musicHint">Klik <b>Play music</b> untuk mulai.</p>
-  </main>
+    <div id="page3" class="page">
+        <h1 style="font-family: 'Dancing Script';">To Anna</h1>
+        <div class="neon-frame">
+            <img src="https://img.sanishtech.com/u/81408c1551525411bc87be97cfe5e9d2.jpg">
+        </div>
+        <p style="margin-top: 15px; max-width: 80%;">"HAPPY Birthday Anna Azzahra."</p>
+        <button class="btn" onclick="goToPage(4)">LANJUT YAA→</button>
+    </div>
 
-  <audio id="bgMusic" preload="auto" loop playsinline>
-    <source src="https://files.catbox.moe/jubyqs.mp4">
-  </audio>
+    <div id="page4" class="page">
+        <div style="background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border: 1px solid var(--soft-blue); max-width: 85%;">
+            <h1 style="color: var(--blue-neon); font-size: 1.5rem;">Happy Birthday ANNA AZZAHRA!</h1>
+            <p id="typewriter" style="line-height: 1.8; min-height: 80px; font-size: 14px; text-align: left;"></p>
+        </div>
+        <button class="btn" onclick="location.reload()">Ulangi</button>
+    </div>
 
-  <script src="./assets/app.js"></script>
+    <audio id="music" loop>
+        <source src="https://image2url.com/r2/default/audio/1771103988924-918c0be3-1840-48af-addf-76ef9fdcf840.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const text = "HBD YAH ANNA AZZAHRA, WIH UDAH NAMBAH UMUR AJA. SELAMAT YAA, SEMOGA PANJANG UMUR, SEHAT SELALU, BAHAGIA DUNIA AKHIRAT, DILANCARIN REZEKI, SEMOGA SUKSES YAA. ENJOY YOUR LIFE, BE HAPPY... FROM: manusia. (btw maaf terlambat ngasihnya baru beres soalnya)";
+
+        function goToPage(n) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + n).classList.add('active');
+            
+            // Pemicu musik: Dimulai saat pindah dari hal 1 ke hal 2
+            if(n === 2) {
+                document.getElementById('music').play().catch(e => console.log("Audio play blocked"));
+                createStars();
+            }
+            if(n === 4) {
+                type();
+            }
+        }
+
+        function showPop(id) {
+            document.getElementById('pop' + id).style.display = 'block';
+        }
+
+        function type() {
+            let i = 0;
+            const target = document.getElementById("typewriter");
+            target.innerHTML = "";
+            function action() {
+                if (i < text.length) {
+                    target.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(action, 50);
+                }
+            }
+            action();
+        }
+
+        function createStars() {
+            for(let i=0; i<70; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = star.style.height = Math.random() * 3 + 'px';
+                star.style.left = Math.random() * 100 + 'vw';
+                star.style.top = Math.random() * 100 + 'vh';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                document.body.appendChild(star);
+            }
+        }
+    </script>
 </body>
 </html>
